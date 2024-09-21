@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Me perdoa?</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffa7c5;
+        transition: background-color 0.5s;
+        text-align: center; /* centraliza o texto dentro do body */
+    }
+
+    .question {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center; /* centraliza o texto da pergunta */
+    }
+
+    .responses {
+        display: flex;
+        gap: 20px;
+    }
+
+    .response {
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: transform 0.5s;
+    }
+
+    .response:hover {
+        transform: scale(1.1);
+    }
+
+    .response.no {
+        background-color: #f03f32;
+    }
+
+    .response.yes {
+        background-color: #79d45d;
+    }
+
+    #gif {
+        display: none;
+        margin-top: 20px;
+    }
+
+    #thanks {
+        display: none;
+        font-size: 24px;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+    <div class="question">Me perdoa por tudo que fiz e aceita ficar comigo novamente?</div>
+    <img id="gif" src="https://media.giphy.com/media/5mt6xWPNMj5ZhNu5PV/giphy.gif" alt="Gif Romântico">
+    <div class="responses">
+        <div class="response yes">Sim</div>
+        <div class="response no">Não</div>
+    </div>
+    <div id="thanks"> Obrigado por ter aceitado as desculpas! Eu te amo mais que tudo nessa vida! </div>
+
+    <script>
+        const yesResponse = document.querySelector('.response.yes');
+        const noResponse = document.querySelector('.response.no');
+        const question = document.querySelector('.question');
+        const responses = document.querySelector('.responses');
+        const gif = document.getElementById('gif');
+        const thanks = document.getElementById('thanks');
+
+        let scale = 1;
+
+        noResponse.addEventListener('click', () => {
+            scale += 0.2;
+            yesResponse.style.transform = `scale(${scale})`;
+            noResponse.style.marginLeft = `${scale * 10}px`;
+            document.body.style.backgroundColor = '#ffa7c5';
+            if (scale >= 2) {
+                yesResponse.style.width = '100%';
+                yesResponse.innerText = 'Sim';
+            }
+        });
+
+        yesResponse.addEventListener('click', () => {
+            question.style.display = 'none';
+            responses.style.display = 'none';
+            gif.style.display = 'block';
+            thanks.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
